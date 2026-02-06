@@ -1,0 +1,13 @@
+{
+  // Visit https://aka.ms/tsconfig to read more about this file
+  "compilerOptions": {
+      "target": "es2021",          // Specifies the ECMAScript version (modern and widely supported)
+      "module": "commonjs",        // Uses CommonJS for Node.js compatibility
+      "outDir": "./dist",          // Outputs compiled JavaScript to the dist folder
+      "rootDir": "./src",          // Keeps source files in the src folder
+      "strict": true,              // Enables strict type-checking for better code quality
+      "esModuleInterop": true,     // Allows default imports from modules with no default export
+      "moduleResolution": "node",  // Helps the compiler figure out what an import refers to
+      "sourceMap": true            // Generates source map files
+  }
+}
