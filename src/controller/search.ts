@@ -8,7 +8,7 @@ export const search = async (query: string) => {
     const results: any[] = []
 
     $(".chivsrc li").each((_, el) => {
-        const image = $(el).find("img").attr("src") || ""
+        const thumbnail = $(el).find("img").attr("src") || ""
         const title = $(el).find("h2 a").text().trim()
         const link = $(el).find("h2 a").attr("href") || ""
         const slug = link.replace(/^https:\/\/otakudesu\.[a-zA-Z0-9-]+\/anime\//, '').replace('/', '')
@@ -42,7 +42,7 @@ export const search = async (query: string) => {
             title,
             link,
             slug,
-            image,
+            thumbnail,
             genres,
             status,
             rating

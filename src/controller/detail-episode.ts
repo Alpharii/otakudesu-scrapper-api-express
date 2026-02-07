@@ -67,9 +67,29 @@ export const detailEpisode = async (slug: string) => {
 
     const iframe = $("#pembed iframe").attr("src") ?? null
 
-    const previousUrl = $(".flir a").eq(0).attr("href")
-    const animeUrl = $(".flir a").eq(1).attr("href")
-    const nextUrl = $(".flir a").eq(2).attr("href")
+    let previousUrl: string | null = null
+    let nextUrl: string | null = null
+    let animeUrl: string | null = null
+
+    $(".prevnext a").each((_, el) => {
+
+        const text = $(el).text().toLowerCase()
+        const href = $(el).attr("href")
+
+        if (!href) return
+
+        if (text.includes("see all")) {
+            animeUrl = href
+        }
+
+        else if (text.includes("next")) {
+            nextUrl = href
+        }
+
+        else if (text.includes("prev")) {
+            previousUrl = href
+        }
+    })
 
     const navigation = {
         previous: previousUrl ? {
@@ -77,10 +97,16 @@ export const detailEpisode = async (slug: string) => {
             slug: extractSlug(previousUrl)
         } : null,
 
-        anime: animeUrl ? {
-            url: animeUrl,
-            slug: animeUrl.split("/anime/")[1]?.replace("/", "")
-        } : null,
+        anime: animeUrl ? (() => {
+            const url = animeUrl as string
+
+            return {
+                url,
+                slug: url.split("/anime/")[1]?.replace("/", "")
+            }
+            })(
+        ) : null,
+
 
         next: nextUrl ? {
             url: nextUrl,
