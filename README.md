@@ -83,7 +83,7 @@ GET /completed
 
 ### 🔹 Search Anime
 ```bash
-GET /search?q=naruto
+GET /anime?q=naruto
 ```
 
 ### 🔹 Detail Anime
